@@ -2,11 +2,14 @@
 
 namespace Modules\Blog\Admin;
 
+use App\Filament\Resources\ProductResource\RelationManagers\SeoRelationManager;
+use App\Filament\Resources\TranslateResource\RelationManagers\TranslatableRelationManager;
 use App\Services\Schema;
 use App\Services\TableSchema;
 use Filament\Forms\Components\Section;
 use Modules\Blog\Admin\BlogArticleResource\Pages;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -79,6 +82,10 @@ class BlogArticleResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationGroup::make('Seo and translates', [
+                TranslatableRelationManager::class,
+                SeoRelationManager::class,
+            ]),
             //
         ];
     }

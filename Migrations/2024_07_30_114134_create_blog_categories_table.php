@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\StaticPage;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->json('template')->nullable();
             BlogCategory::timestampFields($table);
         });
+        StaticPage::createSystemPage('Blog', 'blog');
     }
 
     public function down(): void

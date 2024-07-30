@@ -8,7 +8,9 @@ use App\Traits\HasStatus;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTable;
 use App\Traits\HasTimestamps;
+use App\Traits\HasTranslate;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Seo\Traits\HasSeo;
 
 class BlogCategory extends Model
 {
@@ -18,6 +20,8 @@ class BlogCategory extends Model
     use HasStatus;
     use HasTimestamps;
     use HasSlug;
+    use HasSeo;
+    use HasTranslate;
 
     public static function getDb(): string
     {
