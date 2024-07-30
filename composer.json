@@ -1,0 +1,16 @@
+{
+   "name": "divotek_smart/blog-module",
+   "type": "laravel-module",
+   "description": "Blog module for Divotek SMART",
+   "authors": [
+      {
+         "name": "Divotek SMART",
+         "email": "dev@divotek.com"
+      }
+   ],
+   "autoload": {
+      "psr-4": {
+         "Modules\\Blog\\": ""
+      }
+   }
+}
