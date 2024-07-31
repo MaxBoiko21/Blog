@@ -4,16 +4,20 @@ namespace Modules\Blog\Admin;
 
 use App\Filament\Resources\ProductResource\RelationManagers\SeoRelationManager;
 use App\Filament\Resources\TranslateResource\RelationManagers\TranslatableRelationManager;
+use App\Models\Setting;
 use App\Services\Schema;
 use App\Services\TableSchema;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Toggle;
 use Modules\Blog\Admin\BlogArticleResource\Pages;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Modules\Blog\Models\BlogArticle;
+use Modules\Blog\Models\BlogCategory;
 
 class BlogArticleResource extends Resource
 {
@@ -68,9 +72,45 @@ class BlogArticleResource extends Resource
             ->reorderable('sorting')
             ->filters([
                 TableSchema::getFilterStatus(),
+                SelectFilter::make('blog_category_id')
+                    ->label(__('Blog category'))
+                    ->options(BlogCategory::pluck('name', 'id')->toArray())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('View')
+                    ->label(__('View'))
+                    ->icon('heroicon-o-eye')
+                    ->url(function ($record) {
+                        return $record->route();
+                    })->openUrlInNewTab(),
+            ])
+            ->headerActions([
+                Tables\Actions\Action::make('Template')
+                    ->slideOver()
+                    ->icon('heroicon-o-cog')
+                    ->fillForm(function (): array {
+                        return [
+                            'template' => setting(config('settings.blog.article.template'),[]),
+                            'design' => setting(config('settings.blog.article.design'),'Zero')
+                        ];
+                    })
+                    ->action(function (array $data): void {
+                        setting([
+                            config('settings.blog.article.template') => $data['template'],
+                            config('settings.blog.article.design') => $data['design']
+                        ]);
+                        Setting::updatedSettings();
+                    })
+                    ->form(function ($form) {
+                        return $form
+                            ->schema([
+                                Section::make('')->schema([
+                                    Schema::getModuleTemplateSelect('Pages/BlogArticle'),
+                                    Schema::getTemplateBuilder()->label(__('Template')),
+                                ]),
+                            ]);
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
