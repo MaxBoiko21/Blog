@@ -2,7 +2,6 @@
 
 namespace Modules\Blog\Components;
 
-use App\Models\DesignSetting;
 use App\View\Components\PageComponent;
 use Modules\Blog\Models\BlogArticle;
 

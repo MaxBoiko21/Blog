@@ -2,7 +2,6 @@
 
 namespace Modules\Blog\Admin;
 
-use App\Filament\Resources\ProductResource\RelationManagers\SeoRelationManager;
 use App\Filament\Resources\TranslateResource\RelationManagers\TranslatableRelationManager;
 use App\Models\Setting;
 use App\Services\Schema;
@@ -17,6 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Modules\Blog\Models\BlogCategory;
+use Modules\Seo\Admin\SeoResource\Pages\SeoRelationManager;
 
 class BlogCategoryResource extends Resource
 {
