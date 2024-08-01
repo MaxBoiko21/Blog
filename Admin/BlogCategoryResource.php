@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Seo\Admin\SeoResource\Pages\SeoRelationManager;
 
@@ -24,7 +25,7 @@ class BlogCategoryResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return static::getModel()::query()->withoutGlobalScopes()->count();
     }
 
     public static function getNavigationGroup(): ?string
@@ -42,6 +43,10 @@ class BlogCategoryResource extends Resource
         return __('Blog categories');
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->withoutGlobalScopes();
+    }
     public static function form(Form $form): Form
     {
         return $form
