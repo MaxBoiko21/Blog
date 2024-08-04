@@ -14,7 +14,6 @@ class BlogArticlePage extends PageComponent
         }
         $component = setting(config('settings.blog.article.template'), 'Base');
         $component = 'template.' . strtolower(template()) . '.pages.blog-category.' . strtolower($component);
-
         parent::__construct($entity, $component);
     }
 }

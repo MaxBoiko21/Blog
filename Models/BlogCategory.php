@@ -2,6 +2,8 @@
 
 namespace Modules\Blog\Models;
 
+use App\Models\StaticPage;
+use App\Models\SystemPage;
 use App\Traits\HasBreadcrumbs;
 use App\Traits\HasRoute;
 use App\Traits\HasSlug;
@@ -49,7 +51,11 @@ class BlogCategory extends Model
 
     public function getBreadcrumbs(): array
     {
+        $page = StaticPage::query()->slug(blog_slug())->first();
         return [
+            $page->name ?? 'Blog' => tRoute('slug',[
+                'slug' => blog_slug()
+            ]),
             $this->name => $this->route(),
         ];
     }
