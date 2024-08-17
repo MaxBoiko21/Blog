@@ -14,10 +14,7 @@ class BlogServiceProvider extends ServiceProvider
     {
         $this->loadMigrations();
         Route::middleware('web')->group(module_path('Blog', 'routes/web.php'));
-    }
-
-    public function register(): void
-    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'blog');
     }
 
     private function loadMigrations(): void
