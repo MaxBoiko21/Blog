@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('template')->nullable();
             BlogCategory::timestampFields($table);
         });
-        StaticPage::createSystemPage('Blog', 'blog');
+        StaticPage::createSystemPage('Blog', 'blog::blog-component');
     }
 
     public function down(): void
