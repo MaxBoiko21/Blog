@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Admin;
 
+use App\Filament\Resources\StaticPageResource\RelationManagers\TemplateRelationManager;
 use App\Filament\Resources\TranslateResource\RelationManagers\TranslatableRelationManager;
 use App\Models\Setting;
 use App\Services\Schema;
@@ -131,6 +132,7 @@ class BlogArticleResource extends Resource
             RelationGroup::make('Seo and translates', [
                 TranslatableRelationManager::class,
                 SeoRelationManager::class,
+                TemplateRelationManager::class,
             ]),
             //
         ];

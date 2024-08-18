@@ -11,6 +11,7 @@ use App\Traits\HasSorting;
 use App\Traits\HasStatus;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTable;
+use App\Traits\HasTemplate;
 use App\Traits\HasTimestamps;
 use App\Traits\HasTranslate;
 use App\Traits\HasViews;
@@ -30,6 +31,7 @@ class BlogCategory extends Model
     use HasRoute;
     use HasBreadcrumbs;
     use HasViews;
+    use HasTemplate;
 
     public static function getDb(): string
     {

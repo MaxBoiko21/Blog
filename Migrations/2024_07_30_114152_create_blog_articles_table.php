@@ -19,7 +19,6 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->string('image')->nullable();
             $table->integer('views')->default(0);
-            $table->json('template')->nullable();
             BlogArticle::timestampFields($table);
         });
     }

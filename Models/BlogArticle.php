@@ -10,6 +10,7 @@ use App\Traits\HasSorting;
 use App\Traits\HasStatus;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTable;
+use App\Traits\HasTemplate;
 use App\Traits\HasTimestamps;
 use App\Traits\HasTranslate;
 use App\Traits\HasViews;
@@ -29,6 +30,7 @@ class BlogArticle extends Model
     use HasRoute;
     use HasBreadcrumbs;
     use HasViews;
+    use HasTemplate;
 
     protected $fillable = [
         'blog_category_id',
